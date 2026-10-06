@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <meta name="theme-color" content="#10151c" />
+  <title>Steal an Insect Egg!</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="gameShell">
+    <header class="topbar">
+      <div>
+        <h1>STEAL AN INSECT EGG!</h1>
+        <div class="subtitle">Steal → Hatch → Collect → Fuse DNA → Get rarer insects</div>
+      </div>
+      <div class="stats">
+        <div><span class="label">Rubies</span><strong id="rubies">0</strong></div>
+        <div><span class="label">Eggs</span><strong id="eggCount">0</strong></div>
+        <div><span class="label">Insects</span><strong id="insectCount">0</strong></div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="gamePanel">
+        <div class="eventBar">
+          <span id="eventName">Event loading…</span>
+          <span id="eventDesc"></span>
+          <span id="eventTimer"></span>
+        </div>
+        <div class="canvasWrap">
+          <canvas id="game" width="1200" height="720" aria-label="Top-down stealing map"></canvas>
+          <div id="toast" class="toast" aria-live="polite"></div>
+          <button id="interactBtn" class="interact" type="button">STEAL / INTERACT</button>
+          <div class="touchPad" aria-label="Touch movement controls">
+            <button type="button" data-dir="up">▲</button>
+            <div>
+              <button type="button" data-dir="left">◀</button>
+              <button type="button" data-dir="down">▼</button>
+              <button type="button" data-dir="right">▶</button>
+            </div>
+          </div>
+        </div>
+        <div class="mapHint">WASD / arrows or touch controls. Steal an egg, then return it to your green HOME BASE.</div>
+      </section>
+
+      <aside class="sidePanel">
+        <button id="rubyBtn" class="rubyBtn" type="button">+3000 RUBIES — FREE</button>
+        <div id="rubyCooldown" class="smallText">Reusable every 3 seconds.</div>
+
+        <div class="section">
+          <h2>Carrying</h2>
+          <div id="carrying" class="empty">Nothing</div>
+        </div>
+
+        <div class="section">
+          <h2>Egg Storage</h2>
+          <div id="eggStorage" class="scrollList"></div>
+        </div>
+
+        <div class="section">
+          <h2>DNA Lab</h2>
+          <p class="smallText">Select any 2 insects of the same rarity and fuse them. Higher tiers become possible.</p>
+          <div id="fusionSelection" class="fusionSelection">0 / 2 selected</div>
+          <button id="fuseBtn" type="button" disabled>FUSE DNA</button>
+          <button id="clearFusionBtn" class="secondary" type="button">Clear selection</button>
+        </div>
+
+        <div class="section">
+          <h2>Collection</h2>
+          <div id="collection" class="scrollList"></div>
+        </div>
+
+        <div class="section">
+          <h2>Records</h2>
+          <div class="recordGrid">
+            <span>Eggs stolen</span><b id="statStolen">0</b>
+            <span>Eggs hatched</span><b id="statHatched">0</b>
+            <span>DNA fusions</span><b id="statFused">0</b>
+            <span>Best rarity</span><b id="statBest">Common</b>
+          </div>
+        </div>
+
+        <button id="resetBtn" class="danger" type="button">Reset Save</button>
+      </aside>
+    </main>
+  </div>
+
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modalCard">
+      <h2 id="modalTitle">Egg</h2>
+      <div id="modalBody"></div>
+      <div class="modalActions">
+        <button id="modalPrimary" type="button">OK</button>
+        <button id="modalClose" class="secondary" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
